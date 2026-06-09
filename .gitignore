@@ -1,18 +1,22 @@
+# Virtual Environments
 venv/
 .venv/
+rag_project/
 Lib/
 Scripts/
 Include/
 
+# MLflow
+mlruns/
+
+# Python
 __pycache__/
 *.pyc
 
+# Secrets
 .env
-
-*.db
-
+config.py
+# Vector DBs
 chroma_db/
-vectorstore/
 faiss_index/
-
-.DS_Store
+vectorstore/

@@ -1,24 +1,29 @@
-print("🚀 CLEAN RAG APP")
-
-import gradio as gr
-import traceback
-import mlflow
-import mlflow_tracker as mlt
-import time
-
-from langchain_text_splitters import RecursiveCharacterTextSplitter
-from langchain_community.vectorstores import FAISS
-from langchain_core.documents import Document
+print("🚀 CLEAN RAG APP") 
+import gradio as gr 
+import traceback 
+import mlflow 
+import mlflow_tracker as mlt 
+import time 
+from langchain_text_splitters import RecursiveCharacterTextSplitter 
+from langchain_community.vectorstores import FAISS 
+from langchain_core.documents import Document 
 from langchain_community.embeddings import FastEmbedEmbeddings
-
-from sentence_transformers import CrossEncoder
-from groq import Groq
+from sentence_transformers import CrossEncoder 
+from groq import Groq 
 from pptx import Presentation
+from dotenv import dotenv_values
+import os
 
+config = dotenv_values(".env")
 
-# -------- INIT --------
-reranker = CrossEncoder("cross-encoder/ms-marco-MiniLM-L-6-v2")
-client = Groq()
+client = Groq(
+    api_key=config["GROQ_API_KEY"]
+)
+
+print("CLIENT CREATED SUCCESSFULLY")
+reranker = CrossEncoder(
+    "cross-encoder/ms-marco-MiniLM-L-6-v2"
+)
 
 vectorstore = None
 
@@ -120,12 +125,29 @@ def rerank(query, docs_scores):
 # -------- GENERATE --------
 @mlflow.trace
 def generate(prompt):
-    res = client.chat.completions.create(
-        model="llama-3.3-70b-versatile",
-        messages=[{"role": "user", "content": prompt}],
-        temperature=0
-    )
-    return res.choices[0].message.content
+    try:
+        print("\n" + "="*50)
+        print("PROMPT LENGTH:", len(prompt))
+        print("PROMPT PREVIEW:")
+        print(prompt[:500])
+        print("="*50)
+        print("GENERATE CALLED")
+        res = client.chat.completions.create(
+            model="llama-3.3-70b-versatile",
+            messages=[
+                {"role": "user", "content": prompt}
+            ],
+            temperature=0,
+            max_tokens=1024
+        )
+
+        return res.choices[0].message.content
+
+    except Exception as e:
+        print("GENERATE ERROR:")
+        print(type(e))
+        print(str(e))
+        raise
 
 
 # -------- QA --------
