@@ -1,0 +1,1 @@
+This document explains the concept of Intelligent Agents, including their structure, properties, and types, such as Simple Reflex Agents, Model-Based Reflex Agents, and Learning Agents, in the context of Artificial Intelligence.

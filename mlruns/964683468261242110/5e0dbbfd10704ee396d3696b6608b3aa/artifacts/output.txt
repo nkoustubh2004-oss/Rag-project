@@ -1,0 +1,1 @@
+Supervised learning is the machine learning task of learning a function that maps an input to an output based on example input-output pairs. It is a type of machine learning where a training set of examples with the correct responses (targets) is provided, and the algorithm generalizes to respond correctly to all possible inputs.

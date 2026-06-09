@@ -1,0 +1,14 @@
+artifact_uri: file:///C:/Users/koust/OneDrive/koustubh Narva 741/rag_project/mlruns/964683468261242110/ba785b0ca73249ce9d59108988c5bb92/artifacts
+end_time: 1775724639423
+entry_point_name: ''
+experiment_id: '964683468261242110'
+lifecycle_stage: active
+run_id: ba785b0ca73249ce9d59108988c5bb92
+run_name: PDF Processing
+source_name: ''
+source_type: 4
+source_version: ''
+start_time: 1775724637270
+status: 3
+tags: []
+user_id: koust
