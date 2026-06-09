@@ -1,1 +1,0 @@
-This document explains about Intelligent Agents, their properties, types, and structures, including their interaction with environments.
